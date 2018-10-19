@@ -11,6 +11,7 @@ urlpatterns = [
     url('^UpdateComponent/(?P<pk>[0-9]+)/$',views.UpdateComponent.as_view(),name="Update_component"),
     url(r'^DeleteComponent/(?P<pk>[0-9]+)/$', views.DeleteComponent, name="Delete_component"),
     url(r'^email/(?P<pk>[0-9]+)/$',views.reminder,name="reminder"),
-    url(r'^pdf/$',views.PDF_convert.as_view(),name="download_file"),
+    url(r'^pdf_provided/$',views.PDF_provided.as_view(),name="download_provided"),
+    url(r'^pdf_returned/$',views.PDF_returned.as_view(),name="download_returned"),
     url(r'components/$', views.List_component, name="List_component"),
 ]

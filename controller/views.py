@@ -10,10 +10,15 @@ from .forms import ProviderFrom
 from django.core.mail import EmailMessage
 from easy_pdf.views import PDFTemplateResponseMixin
 
-class PDF_convert(PDFTemplateResponseMixin,ListView):
+class PDF_provided(PDFTemplateResponseMixin,ListView):
     model = components_provided
     context_object_name = 'components'
     template_name = 'controller/pdf_file.html'
+
+class PDF_returned(PDFTemplateResponseMixin,ListView):
+    model = components_provided
+    context_object_name = 'components'
+    template_name = 'controller/returned_file.html'
 
 @login_required
 def main(request):
