@@ -1,0 +1,50 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECE | ADMINISTRATION</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'controller/image/logob.jpg' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<br><br>
+ <img src="{% static 'controller/image/logo.png' %}">
+ <h2 style="text-align: center">KUMARAGURU COLLEGE OF TECHNOLOGY</h2>
+ <h2 style="text-align: center">ECE DEPARTMENT (PROJECT LAB)</h2><br><br>
+ <h2 style="text-align: center">COMPONENETS PROVIDED</h2>
+  <table class="table table-bordered">
+               <tr>
+                   <th>Component</th>
+                   <th>Quantity</th>
+                   <th>Student</th>
+                   <th>Roll No</th>
+                   <th>Section</th>
+                   <th>Year</th>
+                   <th>Mobile</th>
+                   <th>Date Issued</th>
+                   <th>Due Date</th>
+               </tr>
+                 {% for x in components %}
+                 {% if x.status == False %}
+                 <tr>
+                     <td>{{x.detail.name}}</td>
+                     <td>{{x.quantity}}</td>
+                     <td>{{x.student_name}}</td>
+                     <td>{{x.roll_number}}</td>
+                     <td>{{x.section}}</td>
+                     <td>{{x.year}}</td>
+                     <td>{{x.mobile}}</td>
+                     <td>{{x.created_at}}</td>
+                     <td>{{x.due_date}}</td>
+                 </tr>
+                {% endif %}
+                {% endfor %}
+  </table>
+</body>
+</html>

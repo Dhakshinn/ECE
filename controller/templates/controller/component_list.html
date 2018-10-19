@@ -1,0 +1,72 @@
+{% extends 'controller/base.html' %}
+{% block content %}
+{% load staticfiles %}
+</nav>
+    <div class="col-sm-offset-2 col-sm-8"><input class="form-control " id="myInput" type="text" placeholder="Search your component..."></div>
+<br><br>
+    <div class="col-sm-offset-1 col-sm-10">
+    <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="{% url 'Create_component' %}" class="btn btn-info pull-right"> Add new component</a>
+                <h3 align="center" style="font-size: 15px;font-style: initial;">AVAILABLE COMPONENTS LIST</h3>
+            </div>
+             <table class="table table-bordered">
+               <tr>
+                   <th>S.No</th>
+                   <th>Name</th>
+                   <th>Description</th>
+                   <th>Total Quantity</th>
+                   <th>Available Quantity</th>
+                   <th>Action</th>
+               </tr>
+                 <tbody id="myTable">
+                 {%for x in a%}
+                 {% if x.status == False %}
+                 <tr>
+                     <td>{{forloop.counter}}</td>
+                     <td><span data-toggle="tooltip" data-placement="bottom" title="{{x.description}}"><strong>{{x.name}}</strong></td>
+                     <td>{{x.description}}</td>
+                     <td>{{x.total_quantity}}</td>
+                     <td>{{x.available_quantity}}</td>
+                     <td><a href="{% url 'Update_component' x.id %}">
+            <span class="glyphicon glyphicon-edit">Edit</span>
+        </a><br>
+        <a href="{% url 'Delete_component' x.id %}" onclick="return  confirm('Are you sure you want to delete {{x.name}}?')">
+            <span class="glyphicon glyphicon-trash">Delete</span>
+        </a></td>
+                 </tr>
+                 {% endif %}
+                 {%endfor%}
+                 </tbody>
+             </table>
+        <div>
+
+            <script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+            <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+            <script>
+     $(document).ready(function () {
+            $('#myTable').DataTable(
+                {
+                    dom: 'Bfrtip',
+                    responsive: true,
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                }
+            );
+        });
+    </script>
+            {% endblock %}
