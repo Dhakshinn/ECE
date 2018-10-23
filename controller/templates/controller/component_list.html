@@ -2,7 +2,7 @@
 {% block content %}
 {% load staticfiles %}
 </nav>
-    <div class="col-sm-offset-2 col-sm-8"><input class="form-control " id="myInput" type="text" placeholder="Search your component..."></div>
+    <div class="col-sm-offset-2 col-sm-8"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control " id="myInput" type="text" placeholder="Search your component..."></div></div>
 <br><br>
     <div class="col-sm-offset-1 col-sm-10">
     <div class="panel panel-default">
@@ -56,17 +56,4 @@ $(document).ready(function(){
   });
 });
 </script>
-            <script>
-     $(document).ready(function () {
-            $('#myTable').DataTable(
-                {
-                    dom: 'Bfrtip',
-                    responsive: true,
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ]
-                }
-            );
-        });
-    </script>
             {% endblock %}
